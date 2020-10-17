@@ -2,7 +2,7 @@ const faker = require('faker');
 faker.locale = 'en_US';
 const fs = require('fs');
 
-const writeCamps = fs.createWriteStream('camps.csv');
+const writeCamps = fs.createWriteStream('campsPG.csv');
 writeCamps.write('id,name,type,state,photo\n', 'utf8');
 
 let writeTenMillionCamps = (writer, encoding, callback) => {
@@ -19,7 +19,7 @@ let writeTenMillionCamps = (writer, encoding, callback) => {
       let campNameSuffixes = ['', ' State Park', ' Lake', ' Farm', ' National Forest', ' Recreation Area', '', ' Preserve', ' State Forest', ' Glen', ' Hollow', '', ' Canyon', ' Oasis', ' Cove', ' Camp', ' Dessert', ' Valley', ' Creek'];
       let campNamePrefix = campNamePrefixes[Math.floor(Math.random() * Math.floor(campNamePrefixes.length))];
       let campNameSuffix = campNameSuffixes[Math.floor(Math.random() * Math.floor(campNameSuffixes.length))];
-      let name = campNamePrefix + faker.name.lastName() + campNameSuffix;
+      let name = campNamePrefix + faker.address.state() + campNameSuffix;
       let type = 'Property';
       if (name.slice(-10) === 'State Park' || name.slice(-15) === 'National Forest' || name.slice(-15) === 'Recreation Area' || name.slice(-8) === 'Preserve' || name.slice(-12) === 'State Forest') {
         type = 'Public Park';
@@ -28,7 +28,7 @@ let writeTenMillionCamps = (writer, encoding, callback) => {
       let campPhotoSuffix = faker.random.number({min: 1, max: 132});
       let photo = `https://timcamp-image-storage.s3-us-west-1.amazonaws.com/camp-images/timcamp_camp_${campPhotoSuffix}.jpg`;
 
-      const data = `${id},${name},${type},${state},${photo},\n`;
+      const data = `${name},${type},${state},${photo}\n`;
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
