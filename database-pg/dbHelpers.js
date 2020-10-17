@@ -4,7 +4,7 @@ const pool = require('./index.js');
 module.exports = {
 
   searchLocations: (searchTerm, callback) => {
-    pool.query(`SELECT city FROM locations WHERE city LIKE '${searchItem}%' LIMIT 5;`, (err, results) => {
+    pool.query(`SELECT city FROM locations WHERE city LIKE '${searchTerm}%' LIMIT 5;`, (err, results) => {
       if (err) {
         callback(err);
       } else {
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   searchCamps: (searchTerm, callback) => {
-    pool.query(`SELECT name FROM locations WHERE name LIKE '${searchItem}%' LIMIT 8;`, (err, results) => {
+    pool.query(`SELECT name FROM locations WHERE name LIKE '${searchTerm}%' LIMIT 8;`, (err, results) => {
       if (err) {
         callback(err);
       } else {
