@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
+    "startPG": "nodemon server/index-pg.js",
     "seed": "node database/seedNav.js",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production"
