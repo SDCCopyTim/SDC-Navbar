@@ -3,6 +3,7 @@ const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
+var compression = require('compression');
 
 const dbHelpers = require('../database/dbHelpers.js');
 
@@ -17,6 +18,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use(cors());
+app.use(compression());
 
 // Route to search for locations by city
 app.get('/api/search/locations/:term', (req, res) => {
