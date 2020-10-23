@@ -1,8 +1,9 @@
+const newrelic = require('newrelic');
 const express = require('express');
 const bodyparser = require('body-parser');
-const morgan = require('morgan');
-const cors = require('cors');
 const path = require('path');
+
+// const cors = require('cors');
 // var compression = require('compression');
 
 const dbHelpers = require('../database-pg/dbHelpers.js');
@@ -16,8 +17,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')));
 // Middleware
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
-app.use(morgan('dev'));
-app.use(cors());
+// app.use(cors());
 // app.use(compression());
 
 // Route to search for locations by city
